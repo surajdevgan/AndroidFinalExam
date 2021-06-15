@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -36,6 +37,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     ArrayList<Model> myList;
     Model model;
     LatLng sydney;
+    CameraPosition cameraPosition;
+    TextView X, Y;
 
 
 
@@ -48,6 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -99,7 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     .title("Demo"));
         }
 
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(sydney.latitude, sydney.longitude)).zoom(10).build();
+        cameraPosition = new CameraPosition.Builder().target(new LatLng(sydney.latitude, sydney.longitude)).zoom(10).build();
         mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
        // mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
@@ -115,8 +119,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onSensorChanged(SensorEvent event) {
 
 
-        if (event.values[0]<= -0.1){
-            CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(sydney.latitude, sydney.longitude)).zoom(10).build();
+
+        for(Model m : myList)
+        {
+
+            Log.w("lat",""+m.lat);
+            Log.w("long",""+m.longi);
+
+            sydney = new LatLng(m.lat, m.longi);
+            mMap.addMarker(new MarkerOptions()
+                    .position(sydney)
+                    .title("Demo"));
+        }
+
+
+        if (event.values[0]<= -0.8){
+            cameraPosition = new CameraPosition.Builder().target(new LatLng(sydney.latitude, sydney.longitude)).zoom(10).build();
             mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
         }

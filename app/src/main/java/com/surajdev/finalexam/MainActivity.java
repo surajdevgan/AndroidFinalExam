@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;
     SharedPreferences.Editor edit;
     Model model;
+
     ArrayList<Model> myList = new ArrayList<>();
     Intent i;
 
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         Lat = findViewById(R.id.lati);
         Longi = findViewById(R.id.longi);
         model = new Model();
+
+
         sp = getApplicationContext().getSharedPreferences("locations", MODE_PRIVATE);
         edit = sp.edit();
 

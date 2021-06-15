@@ -22,22 +22,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/longi"
+        android:layout_marginTop="30dp"
         android:inputType="numberDecimal"
         android:hint="Enter Longitude"
         />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
+        android:layout_margin="20dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="GotoMap"
         android:onClick="Gp"
         />
 
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:onClick="AddMarker"
+        android:layout_gravity="center"
         android:text="Add Location"
         />
 
